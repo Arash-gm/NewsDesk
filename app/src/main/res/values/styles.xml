@@ -1,0 +1,34 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <!-- TextView -->
+    <style name="TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textSize">@dimen/textsize_medium</item>
+        <item name="android:fontFamily">@font/font_brawler</item>
+        <item name="android:gravity">center|center_vertical</item>
+    </style>
+
+    <style name="TextView.OldFace">
+        <item name="android:fontFamily">@font/font_old_newspaper</item>
+    </style>
+
+    <style name="TextView.Titling">
+        <item name="android:fontFamily">@font/font_titling_bd</item>
+    </style>
+
+    <style name="TextView.Brawler">
+        <item name="android:fontFamily">@font/font_brawler</item>
+    </style>
+
+</resources>

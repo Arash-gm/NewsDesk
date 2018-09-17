@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="elevation_toolbar">4dp</dimen>
+    <dimen name="elevation_card">8dp</dimen>
+
+    <dimen name="textsize_xsmall">5sp</dimen>
+    <dimen name="textsize_small">10sp</dimen>
+    <dimen name="textsize_medium">15sp</dimen>
+    <dimen name="textsize_large">20sp</dimen>
+    <dimen name="textsize_xlarge">24sp</dimen>
+
+    <dimen name="margin_small">4dp</dimen>
+    <dimen name="margin_large">8dp</dimen>
+
+    <dimen name="padding_small">4dp</dimen>
+    <dimen name="padding_large">8dp</dimen>
+
+    <dimen name="radius_card_list_corner">1dp</dimen>
+
+
+    <dimen name="height_news_list_row">180dp</dimen>
+    <dimen name="height_news_list_img">100dp</dimen>
+    <dimen name="height_news_detail_img">250dp</dimen>
+
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">News Desk</string>
+    <string name="headlines_title">Latest News Headlines</string>
+    <string name="image_transition_article">ArticleImageTransition</string>
+</resources>
