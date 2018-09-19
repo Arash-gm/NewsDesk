@@ -37,6 +37,8 @@ class NewsActivity : BaseActivity(), View.OnClickListener {
     @BindView(R.id.fab_filters_list) lateinit var fabFilter: FloatingActionButton
     @BindView(R.id.root_filter) lateinit var rootFilter: RelativeLayout
     @BindView(R.id.btn_country) lateinit var btnCountry: LinearLayout
+    @BindView(R.id.btn_category) lateinit var btnCategory: LinearLayout
+    @BindView(R.id.btn_date) lateinit var btnDate: LinearLayout
     @BindView(R.id.rvFilter) lateinit var rvFilter: RecyclerView
     @BindView(R.id.frame_filter_buttons) lateinit var frameFilterButtons: LinearLayout
     @BindView(R.id.img_filter_list_close) lateinit var imgCloseFilterList: ImageView
@@ -46,8 +48,10 @@ class NewsActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var layoutManagerHorizontal: LinearLayoutManager
     private lateinit var countryAdapter: CountryListAdapter
+    private lateinit var categoryAdapter: CategoryListAdapter
+    private lateinit var dateAdapter: DateListAdapter
 
-    private var headlineFilter:HeadlineFilter? = HeadlineFilter(Country("",R.drawable.ic_gb))
+    private var headlineFilter:HeadlineFilter? = HeadlineFilter(Country("",R.drawable.ic_gb),"")
 
     fun start(activityContext: Activity) {
         val starter = Intent(activityContext, NewsActivity::class.java)
@@ -74,6 +78,8 @@ class NewsActivity : BaseActivity(), View.OnClickListener {
     private fun setListeners(){
         fabFilter.setOnClickListener(this)
         btnCountry.setOnClickListener(this)
+        btnCategory.setOnClickListener(this)
+        btnDate.setOnClickListener(this)
         imgCloseFilterList.setOnClickListener(this)
     }
 
@@ -81,6 +87,8 @@ class NewsActivity : BaseActivity(), View.OnClickListener {
         when(view) {
             fabFilter -> switchFilterLayout()
             btnCountry -> loadCountryFilterList()
+            btnCategory -> loadCategoryFilterList()
+            btnDate -> loadDateFilterList()
             imgCloseFilterList -> showFilterButtons()
         }
     }
@@ -208,6 +216,33 @@ class NewsActivity : BaseActivity(), View.OnClickListener {
     private fun showNewsList(){
         when(rvArticles.visibility){
             View.GONE -> rvArticles.visibility = View.VISIBLE
+        }
+    }
+
+    private fun loadCategoryFilterList(){
+        showFilterList()
+
+        categoryAdapter = CategoryListAdapter(this)
+        rvFilter.adapter = categoryAdapter
+
+        addDisposable(newsViewModel.provideCategoryList().subscribe{categoryAdapter.addItems(it)})
+
+        categoryAdapter.getPositionClicks().subscribe{t ->
+            headlineFilter?.category = t
+            fetchArticles()
+        }
+    }
+
+    private fun loadDateFilterList(){
+        showFilterList()
+
+        dateAdapter = DateListAdapter(this)
+        rvFilter.adapter = dateAdapter
+
+        addDisposable(newsViewModel.provideDateList().subscribe{dateAdapter.addItems(it)})
+
+        dateAdapter.getPositionClicks().subscribe{t ->
+           adapter.filter.filter(t)
         }
     }
 }

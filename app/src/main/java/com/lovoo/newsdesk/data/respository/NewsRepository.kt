@@ -21,13 +21,13 @@ class NewsRepository @Inject constructor(){
     fun getNewsHeadlines(loadingSubject: BehaviorSubject<Boolean>, headlineFilter: HeadlineFilter?): Observable<HeadlineResult?> {
 
         if(cachedResult == null){
-            return api.getHeadlines(Globals.NEWS_API_KEY,headlineFilter?.country?.name).doOnNext {
+            return api.getHeadlines(Globals.NEWS_API_KEY,headlineFilter?.country?.name,headlineFilter?.category).doOnNext {
                 cachedResult = it
                 loadingSubject.onNext(false)
             }
         }else{
             return Observable.just(cachedResult)
-                    .mergeWith(api.getHeadlines(Globals.NEWS_API_KEY,headlineFilter?.country?.name).doOnNext {
+                    .mergeWith(api.getHeadlines(Globals.NEWS_API_KEY,headlineFilter?.country?.name,headlineFilter?.category).doOnNext {
                         cachedResult = it
                         loadingSubject.onNext(false)})
                     .doOnNext { cachedResult = it }

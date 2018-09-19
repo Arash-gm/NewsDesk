@@ -11,6 +11,8 @@ import retrofit2.http.Query
 interface ApiCall{
 
     @GET("top-headlines?language=en&pagesize=60")
-    fun getHeadlines(@Query("apiKey") apiKey:String, @Query("country") country: String?): Observable<HeadlineResult>
+    fun getHeadlines(@Query("apiKey") apiKey: String
+                     ,@Query("country") country: String?
+                     ,@Query("category") category: String?): Observable<HeadlineResult>
 
 }

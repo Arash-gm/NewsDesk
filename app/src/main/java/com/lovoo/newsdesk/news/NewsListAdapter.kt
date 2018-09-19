@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -19,9 +21,10 @@ import java.util.*
 /**
  * Created by Arash on 9/15/2018.
  */
-class NewsListAdapter(val context: Activity): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NewsListAdapter(val context: Activity): RecyclerView.Adapter<RecyclerView.ViewHolder>(),Filterable {
 
     private var mList: ArrayList<Article> = ArrayList()
+    private var originalList: ArrayList<Article> = ArrayList()
     private val onClickSubject = PublishSubject.create<Pair<Article,ImageView>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -54,6 +57,8 @@ class NewsListAdapter(val context: Activity): RecyclerView.Adapter<RecyclerView.
 
     fun addItems(articles: ArrayList<Article>) {
         mList.clear()
+        originalList.clear()
+        originalList.addAll(articles)
         mList.addAll(articles)
         notifyDataSetChanged()
     }
@@ -61,5 +66,39 @@ class NewsListAdapter(val context: Activity): RecyclerView.Adapter<RecyclerView.
 
     fun getPositionClicks(): Observable<Pair<Article, ImageView>> {
         return onClickSubject
+    }
+
+    override fun getFilter(): Filter {
+        mList = originalList
+
+        return object : Filter() {
+            override fun publishResults(constraint: CharSequence, results: FilterResults) {
+
+                mList = results.values as ArrayList<Article>
+                notifyDataSetChanged()
+            }
+
+            override fun performFiltering(constraint: CharSequence): FilterResults {
+                var constraint = constraint
+
+                val results = FilterResults()
+                val FilteredArrayNames = ArrayList<Article>()
+
+                val filteredList = originalList
+
+                constraint = constraint.toString().toLowerCase()
+                for (i in filteredList.indices) {
+                    val article = filteredList[i]
+                    if (article.publishedAt.substring(0..9) == (constraint.toString())) {
+                        FilteredArrayNames.add(article)
+                    }
+                }
+
+                results.count = FilteredArrayNames.size
+                results.values = FilteredArrayNames
+
+                return results
+            }
+        }
     }
 }

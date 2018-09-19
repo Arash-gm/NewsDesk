@@ -10,6 +10,8 @@ import com.lovoo.newsdesk.data.respository.NewsRepository
 import com.lovoo.newsdesk.util.GlobalFunctions
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -47,12 +49,28 @@ class NewsViewModel @Inject constructor(): BaseViewModel() {
                 var country = Country("",R.drawable.ic_gb)
                 country.name = item.key
                 country.drawableRes = GlobalFunctions.getDrawableResId(context,item.value)
-
                 countries.add(country)
             }
         }
-
         return Observable.just(countries)
+    }
+
+    fun provideCategoryList(): Observable<ArrayList<String>> {
+        val categories: ArrayList<String> = ArrayList()
+        categories.addAll(context.getResources().getStringArray(R.array.categories))
+        return Observable.just(categories)
+    }
+
+    fun provideDateList(): Observable<ArrayList<String>> {
+        val dates: ArrayList<String> = ArrayList()
+        for(i in 0..7){
+            val cal = GregorianCalendar.getInstance()
+            cal.time = Date()
+            val sdf = SimpleDateFormat("yyyy-MM-dd")
+            cal.add(Calendar.DAY_OF_YEAR, -i)
+            dates.add(sdf.format(cal.time))
+        }
+        return Observable.just(dates)
     }
 
 }
