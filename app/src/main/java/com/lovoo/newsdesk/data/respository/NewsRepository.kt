@@ -1,6 +1,7 @@
 package com.lovoo.newsdesk.data.respository
 
 import com.lovoo.newsdesk.base.ApplicationClass
+import com.lovoo.newsdesk.data.model.Article
 import com.lovoo.newsdesk.data.model.HeadlineFilter
 import com.lovoo.newsdesk.data.model.HeadlineResult
 import com.lovoo.newsdesk.data.respository.api.ApiCall
@@ -37,13 +38,14 @@ class NewsRepository @Inject constructor(){
             return api.getHeadlines(Globals.NEWS_API_KEY,headlineFilter?.country?.name,headlineFilter?.category).doOnNext {
                 saveData(it)
                 loadingSubject.onNext(false)
-            }
+            }.onErrorReturn{ HeadlineResult("Error",0, emptyArray<Article>() as ArrayList<Article>) }
         }else{
             return Observable.just(cachedResult)
                     .mergeWith(api.getHeadlines(Globals.NEWS_API_KEY,headlineFilter?.country?.name,headlineFilter?.category).doOnNext {
                         saveData(it)
                         loadingSubject.onNext(false)})
                     .doOnNext { cachedResult = it }
+                    .onErrorReturn{ HeadlineResult("Error",0, emptyArray<Article>() as ArrayList<Article>) }
         }
     }
 

@@ -57,7 +57,7 @@ class NewsViewModel @Inject constructor(): BaseViewModel() {
 
     fun provideCategoryList(): Observable<ArrayList<String>> {
         val categories: ArrayList<String> = ArrayList()
-        categories.addAll(context.getResources().getStringArray(R.array.categories))
+        categories.addAll(context.resources.getStringArray(R.array.categories))
         return Observable.just(categories)
     }
 
