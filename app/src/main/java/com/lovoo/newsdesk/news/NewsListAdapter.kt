@@ -47,9 +47,9 @@ class NewsListAdapter(val context: Activity): RecyclerView.Adapter<RecyclerView.
     }
 
 
-    inner class ItemViewHolder(var View: View) : RecyclerView.ViewHolder(View) {
-        val tvTitle: TextView = View.findViewById(R.id.tv_news_list_title)
-        val imgArticle: ImageView = View.findViewById(R.id.img_news_list_image)
+    inner class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val tvTitle: TextView = view.findViewById(R.id.tv_news_list_title)
+        val imgArticle: ImageView = view.findViewById(R.id.img_news_list_image)
     }
 
     fun addItems(articles: ArrayList<Article>) {
