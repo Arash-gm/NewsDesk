@@ -10,7 +10,7 @@ import retrofit2.http.Query
  */
 interface ApiCall{
 
-    @GET("top-headlines?q=en&pagesize=30")
-    fun getHeadlines(@Query("apiKey") apiKey:String): Observable<HeadlineResult>
+    @GET("top-headlines?language=en&pagesize=60")
+    fun getHeadlines(@Query("apiKey") apiKey:String, @Query("country") country: String?): Observable<HeadlineResult>
 
 }

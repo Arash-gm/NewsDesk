@@ -1,6 +1,6 @@
 package com.lovoo.newsdesk.util
 
-import android.app.Activity
+import android.app.Application
 import android.content.Context
 import android.util.Log
 import org.xmlpull.v1.XmlPullParser
@@ -59,7 +59,7 @@ class GlobalFunctions {
             return map
         }
 
-        fun getDrawableResId(context: Activity, name:String): Int {
+        fun getDrawableResId(context: Application, name:String): Int {
             return context.resources.getIdentifier(name, "drawable", context.applicationContext.packageName)
         }
     }

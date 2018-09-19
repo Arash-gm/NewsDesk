@@ -53,6 +53,7 @@ class NewsListAdapter(val context: Activity): RecyclerView.Adapter<RecyclerView.
     }
 
     fun addItems(articles: ArrayList<Article>) {
+        mList.clear()
         mList.addAll(articles)
         notifyDataSetChanged()
     }

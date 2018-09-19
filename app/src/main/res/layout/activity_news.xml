@@ -50,7 +50,7 @@
         android:background="@color/colorWhite"
         android:animateLayoutChanges="true">
 
-        <FrameLayout
+        <RelativeLayout
             android:id="@+id/root_filter"
             android:layout_width="match_parent"
             android:layout_height="50dp"
@@ -61,10 +61,20 @@
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/img_filter_list_close"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_close"
+                android:visibility="gone"
+                android:padding="@dimen/padding_large"/>
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvFilter"
-                android:layout_width="500dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/img_filter_list_close"
                 android:layout_gravity="left"/>
 
             <LinearLayout
@@ -83,7 +93,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:scaleType="centerInside"
-                        android:src="@drawable/ic_uk"/>
+                        android:src="@drawable/ic_gb"/>
 
                 </LinearLayout>
 
@@ -119,7 +129,7 @@
 
             </LinearLayout>
 
-        </FrameLayout>
+        </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvArticles"
@@ -142,7 +152,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_filters_list"

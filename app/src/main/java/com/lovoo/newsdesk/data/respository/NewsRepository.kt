@@ -1,5 +1,6 @@
 package com.lovoo.newsdesk.data.respository
 
+import com.lovoo.newsdesk.data.model.HeadlineFilter
 import com.lovoo.newsdesk.data.model.HeadlineResult
 import com.lovoo.newsdesk.data.respository.api.ApiCall
 import com.lovoo.newsdesk.util.Globals
@@ -17,16 +18,16 @@ class NewsRepository @Inject constructor(){
 
     private var cachedResult: HeadlineResult? = null
 
-    fun getNewsHeadlines(loadingSubject: BehaviorSubject<Boolean>): Observable<HeadlineResult?> {
+    fun getNewsHeadlines(loadingSubject: BehaviorSubject<Boolean>, headlineFilter: HeadlineFilter?): Observable<HeadlineResult?> {
 
         if(cachedResult == null){
-            return api.getHeadlines(Globals.NEWS_API_KEY).doOnNext {
+            return api.getHeadlines(Globals.NEWS_API_KEY,headlineFilter?.country?.name).doOnNext {
                 cachedResult = it
                 loadingSubject.onNext(false)
             }
         }else{
             return Observable.just(cachedResult)
-                    .mergeWith(api.getHeadlines(Globals.NEWS_API_KEY).doOnNext {
+                    .mergeWith(api.getHeadlines(Globals.NEWS_API_KEY,headlineFilter?.country?.name).doOnNext {
                         cachedResult = it
                         loadingSubject.onNext(false)})
                     .doOnNext { cachedResult = it }

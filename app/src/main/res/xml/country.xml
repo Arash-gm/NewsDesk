@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <map linked="true">
-    <entry key="uk">ic_uk</entry>
     <entry key="de">ic_de</entry>
+    <entry key="gb">ic_gb</entry>
+    <entry key="us">ic_us</entry>
+    <entry key="br">ic_br</entry>
+    <entry key="ca">ic_ca</entry>
+    <entry key="cn">ic_cn</entry>
+    <entry key="fr">ic_fr</entry>
+    <entry key="in">ic_in</entry>
+    <entry key="it">ic_it</entry>
+    <entry key="jp">ic_jp</entry>
+    <entry key="nl">ic_nl</entry>
+    <entry key="ru">ic_ru</entry>
+    <entry key="tr">ic_tr</entry>
 </map>
