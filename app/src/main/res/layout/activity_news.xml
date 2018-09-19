@@ -56,6 +56,7 @@
             android:layout_height="50dp"
             android:background="@color/colorPrimaryDark"
             android:orientation="horizontal"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
@@ -63,10 +64,11 @@
 
             <ImageView
                 android:id="@+id/img_filter_list_close"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_close"
+                android:scaleType="centerInside"
                 android:visibility="gone"
                 android:padding="@dimen/padding_large"/>
 

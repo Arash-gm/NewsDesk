@@ -42,6 +42,7 @@ class NewsActivity : BaseActivity(), View.OnClickListener {
     @BindView(R.id.rvFilter) lateinit var rvFilter: RecyclerView
     @BindView(R.id.frame_filter_buttons) lateinit var frameFilterButtons: LinearLayout
     @BindView(R.id.img_filter_list_close) lateinit var imgCloseFilterList: ImageView
+    @BindView(R.id.img_toolbar_refresh) lateinit var imgRefresh: ImageView
 
     private lateinit var layoutManager: GridLayoutManager
     private lateinit var adapter: NewsListAdapter
@@ -72,6 +73,7 @@ class NewsActivity : BaseActivity(), View.OnClickListener {
 
     private fun initViews() {
         setTitle(newsViewModel.providePageTitle())
+        showRefreshIcon()
         setListeners()
     }
 
@@ -81,6 +83,7 @@ class NewsActivity : BaseActivity(), View.OnClickListener {
         btnCategory.setOnClickListener(this)
         btnDate.setOnClickListener(this)
         imgCloseFilterList.setOnClickListener(this)
+        imgRefresh.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -90,6 +93,7 @@ class NewsActivity : BaseActivity(), View.OnClickListener {
             btnCategory -> loadCategoryFilterList()
             btnDate -> loadDateFilterList()
             imgCloseFilterList -> showFilterButtons()
+            imgRefresh -> fetchArticles()
         }
     }
 
@@ -244,5 +248,9 @@ class NewsActivity : BaseActivity(), View.OnClickListener {
         dateAdapter.getPositionClicks().subscribe{t ->
            adapter.filter.filter(t)
         }
+    }
+
+    private fun showRefreshIcon(){
+        imgRefresh.visibility = View.VISIBLE
     }
 }

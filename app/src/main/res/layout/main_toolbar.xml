@@ -28,4 +28,14 @@
         android:textColor="@color/colorWhite"
         style="@style/TextView.OldFace"/>
 
+    <ImageView
+        android:id="@+id/img_toolbar_refresh"
+        android:layout_width="@dimen/size_toolbar_icon"
+        android:layout_height="@dimen/size_toolbar_icon"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_refresh"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:visibility="invisible"/>
+
 </RelativeLayout>

@@ -24,5 +24,6 @@
     <dimen name="size_fab_submit">64dp</dimen>
     <dimen name="elevation_fab">8dp</dimen>
     <dimen name="height_filter_layout">70dp</dimen>
+    <dimen name="size_toolbar_icon">48dp</dimen>
 
 </resources>
