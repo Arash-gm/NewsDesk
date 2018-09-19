@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import com.lovoo.newsdesk.di.component.ApplicationComponent
 import com.lovoo.newsdesk.di.component.DaggerApplicationComponent
+import com.orhanobut.hawk.Hawk
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
@@ -22,6 +23,7 @@ class ApplicationClass: Application(),HasActivityInjector{
         super.onCreate()
         applicationComponent = DaggerApplicationComponent.builder().create(this) as ApplicationComponent
         applicationComponent.inject(this)
+        Hawk.init(this).build()
     }
 
     override fun activityInjector(): DispatchingAndroidInjector<Activity> {

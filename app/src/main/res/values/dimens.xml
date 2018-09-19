@@ -18,7 +18,7 @@
     <dimen name="radius_card_list_corner">1dp</dimen>
 
 
-    <dimen name="height_news_list_row">180dp</dimen>
+    <dimen name="height_news_list_row">200dp</dimen>
     <dimen name="height_news_list_img">100dp</dimen>
     <dimen name="height_news_detail_img">250dp</dimen>
     <dimen name="size_fab_submit">64dp</dimen>

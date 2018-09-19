@@ -11,5 +11,6 @@ class Globals {
         var SPAN_COUNT_ARTICLE_GRID = 2
 
         var KEY_BUNDLE_ARTICLE = "bundle_article"
+        val KEY_BUNDLE_CACHE_HEADLINES = "bundle_cache_headlines"
     }
 }

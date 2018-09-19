@@ -2,6 +2,7 @@ package com.lovoo.newsdesk.util
 
 import android.app.Application
 import android.content.Context
+import android.net.ConnectivityManager
 import android.util.Log
 import org.xmlpull.v1.XmlPullParser
 
@@ -61,6 +62,28 @@ class GlobalFunctions {
 
         fun getDrawableResId(context: Application, name:String): Int {
             return context.resources.getIdentifier(name, "drawable", context.applicationContext.packageName)
+        }
+
+        fun isConnectedToNetwork(context: Context): Boolean {
+            try {
+                val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+                val wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+                if (wifiNetwork != null && wifiNetwork.isConnected) {
+                    return true
+                }
+                val mobileNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+                if (mobileNetwork != null && mobileNetwork.isConnected) {
+                    return true
+                }
+                val activeNetwork = cm.activeNetworkInfo
+                return activeNetwork != null && activeNetwork.isConnected
+
+            } catch (e: OutOfMemoryError) {
+                e.printStackTrace()
+                return false
+            }
+
         }
     }
 }
